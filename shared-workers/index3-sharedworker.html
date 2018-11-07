@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Shared Worker example: primer number calculation</title>
+ </head>
+ <body>
+  <h1>Iframe using the same worker</h1>
+  <p>The highest prime number discovered so far is: <output id="frame-result"></output></p>
+  
+  <script>
+   var worker = new SharedWorker('primenumber-shared-worker.js');
+   worker.port.onmessage = function(event) {
+     document.getElementById('frame-result').textContent = event.data;
+   };
+  </script>
+ </body>
+</html>
